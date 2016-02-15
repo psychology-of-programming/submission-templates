@@ -4,7 +4,7 @@
 \LoadClass[11pt,a4paper]{article}
 
 \RequirePackage{mathptmx}
-\RequirePackage{helvet}
+\RequirePackage[scaled=.90]{helvet}
 \RequirePackage{courier}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{titlesec}
@@ -13,8 +13,8 @@
 \RequirePackage{caption}
 
 % Page dimensions
-\setlength{\paperwidth}{21cm}   % A4
-\setlength{\paperheight}{29.7cm}% A4
+\setlength{\paperwidth}{21cm}    % A4
+\setlength{\paperheight}{29.7cm} % A4
 \setlength{\textheight}{24.62cm} %A4 height - 2in (margins)
 \setlength{\textwidth}{15.92cm}  %A4 width - 2in (margins)
 
@@ -34,10 +34,6 @@
 \setlength{\topsep}{0pt}
 \setlength{\partopsep}{0pt}
 \setlength{\itemsep}{6pt}
-
-% The space for the author's names & affiliations.
-\newlength\titlebox 
-\setlength\titlebox{4cm}
 
 % No page numbers.
 \thispagestyle{empty}
@@ -69,22 +65,23 @@
 % Title
 \newcommand*\titlefont{\fontsize{12}{16}\bfseries\sffamily}
 \newcommand*\abstractfont{\fontsize{11}{13}\bfseries\sffamily}
+\newcommand*\authorfont{\fontsize{11}{13}\selectfont}
+\newcommand*\authorname[1]{\textbf{#1}}
 
-% Title and authors
-\def\@maketitle{\vbox to \titlebox{\hsize\textwidth
- \linewidth\hsize \vskip 0pt \centering
- {\titlefont{\@title} \par} \vskip 20pt plus 1pt minus 1pt
- {\def\And{\end{tabular}\hss \egroup \hskip 2cm plus 2fil 
-           \hbox to 0pt \bgroup\hss \begin{tabular}[t]{c}\bf}
-  \def\AND{\end{tabular}\hss \egroup \hfil\hfil\egroup
-          \vskip 0.75cm plus 1fil minus 0.25cm
-          \hbox to \linewidth\bgroup\large \hfil\hfil
-          \hbox to 0pt \bgroup\hss \begin{tabular}[t]{c}\bf}
-  \hbox to \linewidth\bgroup\large \hfil\hfil
-          \hbox to 0pt \bgroup\hss \begin{tabular}[t]{c}\bf\@author 
-          \end{tabular}\hss \egroup \hfil\hfil\egroup}
-  \vskip 0.75cm plus 2fil minus 0.25cm
-}}
+% Title and authors -- from article.cls, only replaced the fonts for the title and authors.
+\def\@maketitle{%
+    \begin{center}%
+        \let \footnote \thanks
+        {\titlefont{\@title} \par}%
+        \vskip 6pt%
+        {\authorfont
+            \begin{tabular}[t]{c}%
+                \@author
+            \end{tabular}\par}%
+        {\large \@date}%
+    \end{center}%
+    \par
+    \vskip 1.5em}
 
 % Abstract
 \renewenvironment{abstract}%
