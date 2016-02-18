@@ -11,6 +11,7 @@
 \RequirePackage{url}
 \RequirePackage[numberedbib]{apacite}
 \RequirePackage{caption}
+\RequirePackage{fancyhdr}
 
 % Page dimensions
 \setlength{\paperwidth}{21cm}    % A4
@@ -35,9 +36,25 @@
 \setlength{\partopsep}{0pt}
 \setlength{\itemsep}{6pt}
 
-% No page numbers.
-\thispagestyle{empty}
-\pagestyle{empty}
+% Fonts
+\newcommand*\titlefont{\fontsize{12}{16}\bfseries\sffamily}
+\newcommand*\abstractfont{\fontsize{11}{13}\bfseries\sffamily}
+\newcommand*\authorfont{\fontsize{11}{13}\selectfont}
+\newcommand*\authorname[1]{\textbf{#1}}
+\newcommand*\footerfont{\fontsize{10}{12}\selectfont}
+
+% Footer.
+\fancypagestyle{ppigstyle}
+{
+    \renewcommand{\headrulewidth}{0pt} % no line in header area
+    \fancyhf{}
+    \lfoot{\footerfont PPIG, University of Cambridge, 2016}
+    \cfoot{} % No page numbers.
+    \rfoot{\footerfont www.ppig.org}
+}
+
+\thispagestyle{ppigstyle}
+\pagestyle{ppigstyle}
 
 \flushbottom \sloppy
 
@@ -61,12 +78,6 @@
 \titlespacing{\section}{0pt}{\parskip}{-\parskip}
 \titlespacing{\subsection}{0pt}{0pt}{-\parskip}
 \titlespacing{\subsubsection}{0pt}{0pt}{-\parskip}
-
-% Title
-\newcommand*\titlefont{\fontsize{12}{16}\bfseries\sffamily}
-\newcommand*\abstractfont{\fontsize{11}{13}\bfseries\sffamily}
-\newcommand*\authorfont{\fontsize{11}{13}\selectfont}
-\newcommand*\authorname[1]{\textbf{#1}}
 
 % Title and authors -- from article.cls, only replaced the fonts for the title and authors.
 \def\@maketitle{%
